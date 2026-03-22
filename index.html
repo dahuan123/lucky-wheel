@@ -4,11 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>🎰 幸运转盘</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<!-- Fonts with preload + fallback -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Noto+Sans+SC:wght@400;600;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+/* Preload system fonts before Google Fonts loads */
+:root { --sys-font: 'PingFang SC','Microsoft YaHei',-apple-system,BlinkMacSystemFont,sans-serif; }
+</style>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-  font-family:'Outfit',sans-serif;
+  font-family:'Outfit','Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
   min-height:100vh;
   background:linear-gradient(135deg,#0d0015 0%,#1a0030 40%,#0a0a2e 70%,#050520 100%);
   display:flex;
@@ -73,7 +80,7 @@ canvas#wheel{
   padding:14px 32px;
   border:none;
   border-radius:50px;
-  font-family:'Outfit',sans-serif;
+  font-family:'Outfit','Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
   font-size:16px;
   font-weight:600;
   cursor:pointer;
@@ -251,7 +258,7 @@ canvas#wheel{
   border-radius:8px;
   padding:7px 10px;
   color:#fff;
-  font-family:'Outfit',sans-serif;
+  font-family:'Outfit','Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
   font-size:14px;
   outline:none;
   transition:border 0.2s;
@@ -292,7 +299,7 @@ canvas#wheel{
   border:1px dashed rgba(255,200,0,0.3);
   border-radius:10px;
   color:#ffd700;
-  font-family:'Outfit',sans-serif;
+  font-family:'Outfit','Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
   font-size:14px;
   cursor:pointer;
   margin-bottom:20px;
@@ -800,6 +807,11 @@ resizeCanvas();
 drawWheel(currentAngle);
 renderHistory();
 window.addEventListener('resize',resizeCanvas);
+
+// Click on canvas also triggers spin
+canvas.addEventListener('click', () => {
+  if (!isSpinning) startSpin();
+});
 </script>
-</body>
+<noscript><style>body{font-family:var(--sys-font)}</style></noscript></body>
 </html>
